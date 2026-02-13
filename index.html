@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>❤️✨Ma valentine✨❤️</title>
+  <link rel="icon" href="icon.jpg" type="image/jpeg">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Roboto Mono", monospace;
+      overflow-x: hidden;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 40px 20px;
+      gap: 20px;
+      position: relative;
+    }
+
+    /* ❤️ COEURS ANIMÉS ❤️ */
+    .hearts {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .heart {
+      position: absolute;
+      bottom: -50px;
+      font-size: 20px;
+      animation: float 8s linear infinite;
+      opacity: 0.7;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0.7;
+      }
+      100% {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* Cartes */
+    .flip {
+      width: 300px;
+      height: 200px;
+      perspective: 1000px;
+      cursor: pointer;
+      position: relative;
+      z-index: 1;
+    }
+
+    .flip-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.6s;
+      transform-style: preserve-3d;
+    }
+
+    .flip.flipped .flip-inner {
+      transform: rotateY(180deg);
+    }
+
+    .flip.vertical.flipped .flip-inner {
+      transform: rotateX(180deg);
+    }
+
+    .front, .back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+      backface-visibility: hidden;
+      color: white;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      background-size: cover;
+      background-position: center;
+      overflow: hidden;
+    }
+
+    .front {
+      background-color: rgba(0, 0, 0, 0.3);
+      background-blend-mode: overlay;
+    }
+
+    /* ✅ VIDÉO CORRIGÉE - RENTRE PARFAITEMENT DANS LA CARTE */
+    .front-video {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      max-width: none;
+      max-height: none;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+    .back {
+      background: rgba(255, 0, 100, 0.85);
+      transform: rotateY(180deg);
+    }
+
+    .vertical .back {
+      transform: rotateX(180deg);
+    }
+
+    h1 {
+      font-size: 1.5rem;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+      background: rgba(0,0,0,0.3);
+      padding: 8px 16px;
+      border-radius: 30px;
+      z-index: 2;
+      position: relative;
+      max-width: 90%;
+      word-wrap: break-word;
+    }
+
+    p {
+      font-size: 0.95rem;
+      line-height: 1.5;
+      font-weight: bold;
+    }
+
+    /* Hover PC */
+    @media (hover: hover) {
+      .flip:hover .flip-inner {
+        transform: rotateY(180deg);
+      }
+      .flip.vertical:hover .flip-inner {
+        transform: rotateX(180deg);
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .flip {
+        width: 90%;
+        height: 60vw;
+        max-height: 250px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- ❤️ Arrière-plan animé -->
+  <div class="hearts" id="hearts"></div>
+
+  <!-- ============ 🎬 MODÈLES DE CARTES ============ -->
+
+  <!-- 📸 CARTE PHOTO -->
+  <div class="flip">
+    <div class="flip-inner">
+      <div class="front" style="background-image: url('portrait.jpg')">
+        <h1>Ma valentine ❤️</h1>
+      </div>
+      <div class="back">
+        <p>Tu es merveilleuse et incroyable,
+à tel point que je ne mérite pas d’être à tes côtés.
+Pourtant, tu as accepté d’être ma valentine, et c’est un véritable privilège.
+Bonne Saint-Valentin .</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🎞️ CARTE GIF (en ligne) -->
+  <div class="flip">
+    <div class="flip-inner">
+      <div class="front" style="background-image: url('Allegra.jpg')">
+        <h1>Symbole de beauté✨</h1>
+      </div>
+      <div class="back">
+        <p>Ton regard captive,
+tes longs cheveux fascinent,
+et chacun de tes gestes fait de toi un modèle silencieux pour ceux qui t’admirent.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 📹 CARTE VIDÉO - CORRIGÉE (ne sort plus de la carte) -->
+  <div class="flip">
+    <div class="flip-inner">
+      <div class="front">
+        <video class="front-video" autoplay loop muted playsinline>
+          <source src="2.mp4" type="video/mp4">
+          Votre navigateur ne supporte pas les vidéos.
+        </video>
+        <h1>Un instant magique ✨</h1>
+      </div>
+      <div class="back">
+        <p>Ce jour-là, j'ai compris ce que ça faisait d'être léger.
+Avec toi, je suis libre.
+Chaque instant à tes côtés est précieux.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🎬 CARTE VIDÉO VERTICALE - CORRIGÉE -->
+  <div class="flip vertical">
+    <div class="flip-inner">
+      <div class="front">
+        <video class="front-video" autoplay loop muted playsinline>
+          <source src="jojo3.mp4" type="video/mp4">
+        </video>
+        <h1>Souvenir gravé 🌹</h1>
+      </div>
+      <div class="back">
+        <p>Chaque instant avec toi est un souvenir précieux.
+Les bons me font sourire, les mauvais nous ont rendus plus forts.
+L’avenir reste un mystère, et je suis heureux de le partager avec toi.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🖼️ CARTE PHOTO SANS TEXTE -->
+  <div class="flip">
+    <div class="flip-inner">
+      <div class="front" style="background-image: url('dos.jpg'); padding: 0;">
+        <!-- Pas de texte -->
+        <h1>Toi❤️</h1>
+      </div>
+      <div class="back">
+        <p>Tu es belle et intelligente,
+tes yeux donnent envie de s’y perdre.
+Parfois agaçante, toujours attachante.
+Tes qualités admirables et tes défauts intrigants
+te rendent fascinante. </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🎞️ CARTE GIF LOCAL -->
+  <div class="flip">
+    <div class="flip-inner">
+      <div class="front" style="background-image: url('grimace.png')">
+        <h1>Jojo la taquine 🤣</h1>
+      </div>
+      <div class="back">
+        <p>Toi, ta langue tirée, nos taquineries…
+Je t'attire, tu insistes, on a le même âge ? Mais bon j'aime beaucoup ces moments et je ne les changerai pour rien au monde</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 📹 CARTE VIDÉO SANS TEXTE - CORRIGÉE -->
+  <div class="flip">
+    <div class="flip-inner">
+      <div class="front" style="padding: 0;">
+        <video class="front-video" autoplay loop muted playsinline>
+          <source src="jojo1.mp4" type="video/mp4">
+        </video>
+        <h1>Au creux de la carte 💌</h1>
+      </div>
+      <div class="back">
+        <p>Ce qui rend cette première fois particulière, ce n’est pas l’événement lui-même…
+mais la personne avec qui je l’ai partagé.
+Merci d’avoir transformé un simple instant en un souvenir précieux.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Flip mobile
+    document.querySelectorAll('.flip').forEach(card => {
+      card.addEventListener('click', () => {
+        card.classList.toggle('flipped');
+      });
+    });
+
+    // Génération des cœurs animés
+    const heartsContainer = document.getElementById("hearts");
+
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.innerHTML = "❤️";
+      
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = Math.random() * 20 + 15 + "px";
+      heart.style.animationDuration = Math.random() * 5 + 5 + "s";
+      heart.style.opacity = Math.random() * 0.5 + 0.3;
+
+      heartsContainer.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 8000);
+    }
+
+    setInterval(createHeart, 400);
+  </script>
+
+  <!-- 
+    ============ 📋 SOLUTION VIDÉO ============
+    
+    ✅ Le problème était : la vidéo sortait de la carte
+    
+    ✅ MAINTENANT CORRIGÉ avec :
+    
+    .front-video {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: cover;
+    }
+    
+    ✅ La vidéo remplit TOUJOURS toute la carte
+    ✅ Sans déborder ni laisser de blanc
+    ✅ Centrée parfaitement
+  -->
+</body>
+</html>
